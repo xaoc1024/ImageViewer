@@ -18,6 +18,9 @@
 		5C7DE6121902D129006E8EB7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C7DE5F11902D128006E8EB7 /* Cocoa.framework */; };
 		5C7DE61A1902D129006E8EB7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C7DE6181902D129006E8EB7 /* InfoPlist.strings */; };
 		5C7DE61C1902D129006E8EB7 /* Image_ViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7DE61B1902D129006E8EB7 /* Image_ViewerTests.m */; };
+		5C7DE62619044DB5006E8EB7 /* Dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7DE62519044DB5006E8EB7 /* Dog.jpg */; };
+		5C7E7632190561AE0015B57F /* ImageViewerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C7E7631190561AE0015B57F /* ImageViewerWindow.xib */; };
+		5C7E7635190561D10015B57F /* ANImageViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7E7634190561D10015B57F /* ANImageViewerWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,10 @@
 		5C7DE6171902D129006E8EB7 /* Image ViewerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Image ViewerTests-Info.plist"; sourceTree = "<group>"; };
 		5C7DE6191902D129006E8EB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5C7DE61B1902D129006E8EB7 /* Image_ViewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Image_ViewerTests.m; sourceTree = "<group>"; };
+		5C7DE62519044DB5006E8EB7 /* Dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dog.jpg; sourceTree = "<group>"; };
+		5C7E7631190561AE0015B57F /* ImageViewerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewerWindow.xib; sourceTree = "<group>"; };
+		5C7E7633190561D10015B57F /* ANImageViewerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANImageViewerWindowController.h; sourceTree = "<group>"; };
+		5C7E7634190561D10015B57F /* ANImageViewerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANImageViewerWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +124,11 @@
 			children = (
 				5C7DE6031902D128006E8EB7 /* ANAppDelegate.h */,
 				5C7DE6041902D128006E8EB7 /* ANAppDelegate.m */,
-				5C7DE6061902D128006E8EB7 /* MainMenu.xib */,
+				5C7E7633190561D10015B57F /* ANImageViewerWindowController.h */,
+				5C7E7634190561D10015B57F /* ANImageViewerWindowController.m */,
 				5C7DE6091902D128006E8EB7 /* Images.xcassets */,
+				5C7DE62519044DB5006E8EB7 /* Dog.jpg */,
+				5C7E76361905696B0015B57F /* Interface Builder */,
 				5C7DE5F81902D128006E8EB7 /* Supporting Files */,
 			);
 			path = "Image Viewer";
@@ -152,6 +162,15 @@
 				5C7DE6181902D129006E8EB7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5C7E76361905696B0015B57F /* Interface Builder */ = {
+			isa = PBXGroup;
+			children = (
+				5C7DE6061902D128006E8EB7 /* MainMenu.xib */,
+				5C7E7631190561AE0015B57F /* ImageViewerWindow.xib */,
+			);
+			name = "Interface Builder";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +251,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C7DE5FC1902D128006E8EB7 /* InfoPlist.strings in Resources */,
+				5C7E7632190561AE0015B57F /* ImageViewerWindow.xib in Resources */,
 				5C7DE60A1902D128006E8EB7 /* Images.xcassets in Resources */,
+				5C7DE62619044DB5006E8EB7 /* Dog.jpg in Resources */,
 				5C7DE6021902D128006E8EB7 /* Credits.rtf in Resources */,
 				5C7DE6081902D128006E8EB7 /* MainMenu.xib in Resources */,
 			);
@@ -254,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C7DE5FE1902D128006E8EB7 /* main.m in Sources */,
+				5C7E7635190561D10015B57F /* ANImageViewerWindowController.m in Sources */,
 				5C7DE6051902D128006E8EB7 /* ANAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +489,7 @@
 				5C7DE6211902D129006E8EB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5C7DE6221902D129006E8EB7 /* Build configuration list for PBXNativeTarget "Image ViewerTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +498,7 @@
 				5C7DE6241902D129006E8EB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
