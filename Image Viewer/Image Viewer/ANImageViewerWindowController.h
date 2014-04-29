@@ -9,5 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ANImageViewerWindowController : NSWindowController
-
+@property (nonatomic, strong) NSArray *imagePathsArray;
+@property (nonatomic, assign) NSInteger imageCounter;
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C5DE304190D72480007527C /* ANImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5DE303190D72480007527C /* ANImageView.m */; };
 		5C7DE5F21902D128006E8EB7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C7DE5F11902D128006E8EB7 /* Cocoa.framework */; };
 		5C7DE5FC1902D128006E8EB7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C7DE5FA1902D128006E8EB7 /* InfoPlist.strings */; };
 		5C7DE5FE1902D128006E8EB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7DE5FD1902D128006E8EB7 /* main.m */; };
@@ -21,6 +22,11 @@
 		5C7DE62619044DB5006E8EB7 /* Dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7DE62519044DB5006E8EB7 /* Dog.jpg */; };
 		5C7E7632190561AE0015B57F /* ImageViewerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C7E7631190561AE0015B57F /* ImageViewerWindow.xib */; };
 		5C7E7635190561D10015B57F /* ANImageViewerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7E7634190561D10015B57F /* ANImageViewerWindowController.m */; };
+		5C85D435190E991700C25B36 /* leopard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C85D431190E991700C25B36 /* leopard.jpg */; };
+		5C85D436190E991700C25B36 /* Lion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C85D432190E991700C25B36 /* Lion.jpg */; };
+		5C85D437190E991700C25B36 /* Parrot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C85D433190E991700C25B36 /* Parrot.jpg */; };
+		5C85D438190E991700C25B36 /* SmilingDog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C85D434190E991700C25B36 /* SmilingDog.jpg */; };
+		5C85D43A190FB11B00C25B36 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C85D439190FB11B00C25B36 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C5DE302190D72480007527C /* ANImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANImageView.h; sourceTree = "<group>"; };
+		5C5DE303190D72480007527C /* ANImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANImageView.m; sourceTree = "<group>"; };
 		5C7DE5EE1902D128006E8EB7 /* Image Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Image Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C7DE5F11902D128006E8EB7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5C7DE5F41902D128006E8EB7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -57,6 +65,11 @@
 		5C7E7631190561AE0015B57F /* ImageViewerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewerWindow.xib; sourceTree = "<group>"; };
 		5C7E7633190561D10015B57F /* ANImageViewerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANImageViewerWindowController.h; sourceTree = "<group>"; };
 		5C7E7634190561D10015B57F /* ANImageViewerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANImageViewerWindowController.m; sourceTree = "<group>"; };
+		5C85D431190E991700C25B36 /* leopard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = leopard.jpg; sourceTree = "<group>"; };
+		5C85D432190E991700C25B36 /* Lion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Lion.jpg; sourceTree = "<group>"; };
+		5C85D433190E991700C25B36 /* Parrot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Parrot.jpg; sourceTree = "<group>"; };
+		5C85D434190E991700C25B36 /* SmilingDog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SmilingDog.jpg; sourceTree = "<group>"; };
+		5C85D439190FB11B00C25B36 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C85D43A190FB11B00C25B36 /* QuartzCore.framework in Frameworks */,
 				5C7DE5F21902D128006E8EB7 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +116,7 @@
 		5C7DE5F01902D128006E8EB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C85D439190FB11B00C25B36 /* QuartzCore.framework */,
 				5C7DE5F11902D128006E8EB7 /* Cocoa.framework */,
 				5C7DE6101902D129006E8EB7 /* XCTest.framework */,
 				5C7DE5F31902D128006E8EB7 /* Other Frameworks */,
@@ -124,10 +139,13 @@
 			children = (
 				5C7DE6031902D128006E8EB7 /* ANAppDelegate.h */,
 				5C7DE6041902D128006E8EB7 /* ANAppDelegate.m */,
-				5C7E7633190561D10015B57F /* ANImageViewerWindowController.h */,
-				5C7E7634190561D10015B57F /* ANImageViewerWindowController.m */,
+				5C7E7637190578CA0015B57F /* Controllers */,
 				5C7DE6091902D128006E8EB7 /* Images.xcassets */,
 				5C7DE62519044DB5006E8EB7 /* Dog.jpg */,
+				5C85D431190E991700C25B36 /* leopard.jpg */,
+				5C85D432190E991700C25B36 /* Lion.jpg */,
+				5C85D433190E991700C25B36 /* Parrot.jpg */,
+				5C85D434190E991700C25B36 /* SmilingDog.jpg */,
 				5C7E76361905696B0015B57F /* Interface Builder */,
 				5C7DE5F81902D128006E8EB7 /* Supporting Files */,
 			);
@@ -171,6 +189,25 @@
 				5C7E7631190561AE0015B57F /* ImageViewerWindow.xib */,
 			);
 			name = "Interface Builder";
+			sourceTree = "<group>";
+		};
+		5C7E7637190578CA0015B57F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5C7E7633190561D10015B57F /* ANImageViewerWindowController.h */,
+				5C7E7634190561D10015B57F /* ANImageViewerWindowController.m */,
+				5C85D430190E8F5100C25B36 /* Image View */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		5C85D430190E8F5100C25B36 /* Image View */ = {
+			isa = PBXGroup;
+			children = (
+				5C5DE302190D72480007527C /* ANImageView.h */,
+				5C5DE303190D72480007527C /* ANImageView.m */,
+			);
+			name = "Image View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,11 +288,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C7DE5FC1902D128006E8EB7 /* InfoPlist.strings in Resources */,
+				5C85D436190E991700C25B36 /* Lion.jpg in Resources */,
 				5C7E7632190561AE0015B57F /* ImageViewerWindow.xib in Resources */,
 				5C7DE60A1902D128006E8EB7 /* Images.xcassets in Resources */,
 				5C7DE62619044DB5006E8EB7 /* Dog.jpg in Resources */,
+				5C85D435190E991700C25B36 /* leopard.jpg in Resources */,
+				5C85D438190E991700C25B36 /* SmilingDog.jpg in Resources */,
 				5C7DE6021902D128006E8EB7 /* Credits.rtf in Resources */,
 				5C7DE6081902D128006E8EB7 /* MainMenu.xib in Resources */,
+				5C85D437190E991700C25B36 /* Parrot.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C7DE5FE1902D128006E8EB7 /* main.m in Sources */,
+				5C5DE304190D72480007527C /* ANImageView.m in Sources */,
 				5C7E7635190561D10015B57F /* ANImageViewerWindowController.m in Sources */,
 				5C7DE6051902D128006E8EB7 /* ANAppDelegate.m in Sources */,
 			);
