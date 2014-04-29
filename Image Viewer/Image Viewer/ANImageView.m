@@ -9,11 +9,24 @@
 #import "ANImageView.h"
 #import <QuartzCore/CoreAnimation.h>
 
-CGPoint layerCenter(CALayer *layer) {
+CGPoint ANLayerCenter(CALayer *layer) {
     CGPoint center;
     center.x = layer.frame.size.width / 2.0;
     center.y = layer.frame.size.height / 2.0;
     return center;
+}
+
+float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
+    float newScale = 1.0f;
+    float imageRatio = imageSize.width / imageSize.height;
+    float viewRatio = viewSize.width / viewSize.height;
+    
+    if (viewRatio >= 1.0f){
+        newScale = (viewRatio >= imageRatio) ? viewSize.height / imageSize.height : viewSize.width / imageSize.width;
+    } else {
+        newScale = (viewRatio < imageRatio) ? viewSize.width / imageSize.width : viewSize.height / imageSize.height;
+    }
+    return newScale;
 }
 
 
@@ -31,7 +44,7 @@ CGPoint layerCenter(CALayer *layer) {
     self.contentLayer.magnificationFilter = kCAFilterTrilinear;
     self.imageScale = 1.0f;
 //    self.contentLayer.bounds = self.bounds;
-    self.contentLayer.position = layerCenter(self.layer);
+    self.contentLayer.position = ANLayerCenter(self.layer);
 
 }
 
@@ -47,13 +60,12 @@ CGPoint layerCenter(CALayer *layer) {
 #pragma mark - setters
 - (void)setContentMode:(ANContentMode)contentMode {
     _contentMode = contentMode;
-    self.imageScale = 1.0;
     switch (contentMode) {
         case ANContentModeFit:
-            self.contentLayer.contentsGravity = kCAGravityResizeAspect;
+            self.imageScale = ANCalculateScaleToFit(self.bounds.size, self.image.size);
             break;
         case ANContentModeOriginalSize:
-            self.contentLayer.contentsGravity = nil;
+            self.imageScale = 1.0;
             break;
         default:
             break;
@@ -69,9 +81,11 @@ CGPoint layerCenter(CALayer *layer) {
     CGPoint center = CGPointMake(bounds.size.width / 2.0, bounds.size.height / 2.0);
     
     newLayer.contents = image;
-    newLayer.contentsGravity = (self.contentMode == ANContentModeFit) ? kCAGravityResizeAspect : nil;
+    newLayer.contentsGravity = kCAGravityResizeAspect; //(self.contentMode == ANContentModeFit) ? kCAGravityResizeAspect : nil;
     [newLayer setBackgroundColor:[NSColor blackColor].CGColor];
-    [newLayer setBounds:self.bounds];
+    
+    bounds.size = image.size;
+    [newLayer setBounds:bounds];
     [newLayer setPosition:center];
     [self.layer addSublayer:newLayer];
     
@@ -89,10 +103,8 @@ CGPoint layerCenter(CALayer *layer) {
         NSLog(@"Completion block");
     }];
     
-    
     [newLayer addAnimation:fadeInAnim forKey:@"opacity"];
     newLayer.opacity = 1.0;
-    
     
     _image = image;
 }
@@ -102,6 +114,7 @@ CGPoint layerCenter(CALayer *layer) {
     CGSize newSize;
     newSize.height = self.image.size.height * scale;
     newSize.width = self.image.size.width * scale;
+    
     CGRect newBounds;
     newBounds.size = newSize;
     newBounds.origin.x = 0;
@@ -113,13 +126,22 @@ CGPoint layerCenter(CALayer *layer) {
 #pragma mark - overriden
 -(void)viewDidEndLiveResize {
     [super viewDidEndLiveResize];
-    [self.contentLayer setPosition:layerCenter(self.layer)];
-    self.contentLayer.bounds = self.bounds;
+    [self.contentLayer setPosition:ANLayerCenter(self.layer)];
+    
+    switch (self.contentMode) {
+        case ANContentModeFit:
+            self.imageScale = ANCalculateScaleToFit(self.bounds.size, self.image.size);
+            break;
+            
+        case ANContentModeOriginalSize:
+            self.imageScale = 1.0;
+            break;
+        default:
+            break;
+    }
+//    self.contentLayer.bounds = self.bounds;
 }
 
--(BOOL)acceptsFirstMouse:(NSEvent *)theEvent {
-    return YES;
-}
 
 - (BOOL)acceptsFirstResponder {
     return YES;
@@ -132,6 +154,7 @@ CGPoint layerCenter(CALayer *layer) {
 - (void)mouseDragged:(NSEvent *)theEvent {
 //    NSLog(@"Mouse dragged");
 }
+
 -(void)mouseUp:(NSEvent *)theEvent {
 //    NSLog(@"Mouse up");
 }
@@ -154,5 +177,5 @@ CGPoint layerCenter(CALayer *layer) {
     }
     self.imageScale = _imageScale / 2.0;
 }
-@end
 
+@end
