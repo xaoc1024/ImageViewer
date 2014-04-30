@@ -24,12 +24,14 @@
     [super windowDidLoad];
     
     self.imagePathsArray = [NSArray arrayWithObjects:
+                            @"/Users/xaoc1024/Desktop/testImage.png",
                             @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/leopard.jpg",
                             @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/Lion.jpg",
                             @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/Parrot.jpg",
                             @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/SmilingDog.jpg",
                             @"/Users/xaoc1024/Downloads/IMG_28042014_212412.png",
-                            @"/Users/xaoc1024/Downloads/001.JPG", nil];
+                            @"/Users/xaoc1024/Downloads/001.JPG",
+                             nil];
     
 //    [self setCurrentlyViewedImage:image];
 //    self.imageCounter = 0;

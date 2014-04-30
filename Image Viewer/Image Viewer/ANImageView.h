@@ -9,7 +9,8 @@
 #import <Cocoa/Cocoa.h>
 typedef enum {
     ANContentModeFit = 0,
-    ANContentModeOriginalSize
+    ANContentModeOriginalSize,
+    ANContentModeScaled
 } ANContentMode;
 
 @interface ANImageView : NSView

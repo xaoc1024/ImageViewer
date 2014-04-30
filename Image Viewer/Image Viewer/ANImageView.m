@@ -9,7 +9,7 @@
 #import "ANImageView.h"
 #import <QuartzCore/CoreAnimation.h>
 
-CGPoint ANLayerCenter(CALayer *layer) {
+CGPoint ANCalculateLayerCenter(CALayer *layer) {
     CGPoint center;
     center.x = layer.frame.size.width / 2.0;
     center.y = layer.frame.size.height / 2.0;
@@ -33,6 +33,8 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
 @interface ANImageView ()
 @property (nonatomic, strong) CALayer *contentLayer;
 @property (nonatomic, assign) NSPoint mouseDownLocation;
+@property (nonatomic, assign) NSPoint layerPosition;
+
 @end
 
 @implementation ANImageView
@@ -40,11 +42,9 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self.layer setBackgroundColor:[NSColor blackColor].CGColor];
-    self.layer.magnificationFilter = kCAFilterTrilinear;
-    self.contentLayer.magnificationFilter = kCAFilterTrilinear;
     self.imageScale = 1.0f;
 //    self.contentLayer.bounds = self.bounds;
-    self.contentLayer.position = ANLayerCenter(self.layer);
+    self.contentLayer.position = ANCalculateLayerCenter(self.layer);
 
 }
 
@@ -59,21 +59,23 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
 
 #pragma mark - setters
 - (void)setContentMode:(ANContentMode)contentMode {
-    _contentMode = contentMode;
     switch (contentMode) {
         case ANContentModeFit:
             self.imageScale = ANCalculateScaleToFit(self.bounds.size, self.image.size);
+            self.contentLayer.position = ANCalculateLayerCenter(self.layer);
             break;
         case ANContentModeOriginalSize:
             self.imageScale = 1.0;
+            self.contentLayer.position = ANCalculateLayerCenter(self.layer);
             break;
         default:
             break;
     }
+    _contentMode = contentMode;
 }
 
 - (void)setImage:(NSImage *)image {
-//    [self.contentLayer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
+    [self.contentLayer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
     CALayer *newLayer = [CALayer layer];
     newLayer.opacity = 0.0f;
     
@@ -81,6 +83,7 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
     CGPoint center = CGPointMake(bounds.size.width / 2.0, bounds.size.height / 2.0);
     
     newLayer.contents = image;
+    newLayer.magnificationFilter = kCAFilterTrilinear;
     newLayer.contentsGravity = kCAGravityResizeAspect; //(self.contentMode == ANContentModeFit) ? kCAGravityResizeAspect : nil;
     [newLayer setBackgroundColor:[NSColor blackColor].CGColor];
     
@@ -105,11 +108,13 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
     
     [newLayer addAnimation:fadeInAnim forKey:@"opacity"];
     newLayer.opacity = 1.0;
-    
     _image = image;
 }
 
 - (void)setImageScale:(float)scale {
+    if (scale != 1.0){
+        _contentMode = ANContentModeScaled;
+    }
     _imageScale = scale;
     CGSize newSize;
     newSize.height = self.image.size.height * scale;
@@ -126,7 +131,7 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
 #pragma mark - overriden
 -(void)viewDidEndLiveResize {
     [super viewDidEndLiveResize];
-    [self.contentLayer setPosition:ANLayerCenter(self.layer)];
+    [self.contentLayer setPosition:ANCalculateLayerCenter(self.layer)];
     
     switch (self.contentMode) {
         case ANContentModeFit:
@@ -136,6 +141,7 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
         case ANContentModeOriginalSize:
             self.imageScale = 1.0;
             break;
+            
         default:
             break;
     }
@@ -148,15 +154,82 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
 }
 
 -(void)mouseDown:(NSEvent *)theEvent {
+    if (((self.contentMode == ANContentModeOriginalSize)
+        || (self.contentMode == ANContentModeScaled))
+        && ((self.contentLayer.bounds.size.width > self.bounds.size.width)
+        || (self.contentLayer.bounds.size.height > self.bounds.size.height)))
+    {
+        self.mouseDownLocation = [theEvent locationInWindow];
+        self.layerPosition = self.contentLayer.position;
+    }
+//    self.mouseDownLocation = [self.layer convertPoint:self.mouseDownLocation toLayer:self.contentLayer];
     NSLog(@"Mouse Down");
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent {
-//    NSLog(@"Mouse dragged");
+    if (((self.contentMode == ANContentModeOriginalSize)
+        || (self.contentMode == ANContentModeScaled))
+        && ((self.contentLayer.bounds.size.width > self.bounds.size.width)
+        || (self.contentLayer.bounds.size.height > self.bounds.size.height)))
+    {
+        [CATransaction begin];
+        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+        //change background colour
+        
+        NSPoint loc = [theEvent locationInWindow];
+        NSSize shiftSize;
+        shiftSize.width = loc.x - self.mouseDownLocation.x;
+        shiftSize.height = loc.y - self.mouseDownLocation.y;
+        
+        CGPoint newPosition = self.layerPosition;
+        if (self.contentLayer.bounds.size.width > self.layer.bounds.size.width){
+            newPosition.x += shiftSize.width;
+        }
+        if (self.contentLayer.bounds.size.height > self.layer.bounds.size.height){
+            newPosition.y += shiftSize.height;
+        }
+        self.contentLayer.position = newPosition;
+        [CATransaction commit];
+    }
 }
 
 -(void)mouseUp:(NSEvent *)theEvent {
-//    NSLog(@"Mouse up");
+    if (((self.contentMode == ANContentModeOriginalSize)
+         || (self.contentMode == ANContentModeScaled))
+        && ((self.contentLayer.bounds.size.width > self.bounds.size.width)
+            || (self.contentLayer.bounds.size.height > self.bounds.size.height)))
+    {
+        CGRect contentFrame = self.contentLayer.frame;
+        CGRect layerBounds = self.layer.bounds;
+        
+        float contentWidth = self.contentLayer.bounds.size.width;
+        float contentHeight = self.contentLayer.bounds.size.height;
+        
+        float layerWidth = layerBounds.size.width;
+        float layerHeight = layerBounds.size.height;
+        
+        CGPoint newPosition = self.contentLayer.position;
+        
+        if (contentWidth > layerWidth){
+            float shift = layerWidth - (contentFrame.origin.x + contentFrame.size.width);
+            
+            if (shift > 0){
+                newPosition.x += shift;
+            } else if (contentFrame.origin.x > 0.0f) {
+                newPosition.x -= contentFrame.origin.x;
+            }
+        }
+        
+        if (contentHeight > layerHeight){
+            float upperShift = layerHeight - (contentFrame.origin.y + contentFrame.size.height);
+            if (upperShift > 0){
+                newPosition.y += upperShift;
+            } else if (contentFrame.origin.y > 0){
+                newPosition.y -= contentFrame.origin.y;
+            }
+        }
+        self.contentLayer.position = newPosition;
+    }
 }
 
 #pragma mark - public
