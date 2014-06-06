@@ -13,4 +13,5 @@
 @property (assign) IBOutlet NSWindow *window;
 
 @property (weak) IBOutlet NSScrollView *theScrollView;
+
 @end

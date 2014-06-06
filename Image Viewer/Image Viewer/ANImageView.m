@@ -45,7 +45,10 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
     self.imageScale = 1.0f;
 //    self.contentLayer.bounds = self.bounds;
     self.contentLayer.position = ANCalculateLayerCenter(self.layer);
-
+    self.contentLayer.magnificationFilter = kCAFilterTrilinear;
+    self.contentLayer.contentsGravity = kCAGravityResizeAspect;
+    [self.contentLayer setBackgroundColor:[NSColor blackColor].CGColor];
+    self.contentMode = ANContentModeFit;
 }
 
 #pragma mark - getters
@@ -75,45 +78,33 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
 }
 
 - (void)setImage:(NSImage *)image {
-    [self.contentLayer setTransform:CATransform3DMakeScale(1.0, 1.0, 1.0)];
-    CALayer *newLayer = [CALayer layer];
-    newLayer.opacity = 0.0f;
-    
+    _image = image;
     CGRect bounds = [self.layer bounds];
     CGPoint center = CGPointMake(bounds.size.width / 2.0, bounds.size.height / 2.0);
     
-    newLayer.contents = image;
-    newLayer.magnificationFilter = kCAFilterTrilinear;
-    newLayer.contentsGravity = kCAGravityResizeAspect; //(self.contentMode == ANContentModeFit) ? kCAGravityResizeAspect : nil;
-    [newLayer setBackgroundColor:[NSColor blackColor].CGColor];
-    
-    bounds.size = image.size;
-    [newLayer setBounds:bounds];
-    [newLayer setPosition:center];
-    [self.layer addSublayer:newLayer];
-    
-    CABasicAnimation* fadeInAnim = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    
-    // face in
-    fadeInAnim.fromValue = [NSNumber numberWithFloat:0.0];
-    fadeInAnim.toValue = [NSNumber numberWithFloat:1.0];
-    fadeInAnim.duration = 0.2f;
-    
-    [CATransaction setCompletionBlock:^(){
-        [self.contentLayer removeFromSuperlayer];
-        self.contentLayer = newLayer;
-        [CATransaction setCompletionBlock:nil];
-        NSLog(@"Completion block");
-    }];
-    
-    [newLayer addAnimation:fadeInAnim forKey:@"opacity"];
-    newLayer.opacity = 1.0;
-    _image = image;
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    self.contentLayer.contents = image;
+    [self.contentLayer setPosition:center];
+    switch (self.contentMode) {
+        case ANContentModeFit:
+            self.imageScale = ANCalculateScaleToFit(self.layer.bounds.size, image.size);
+            break;
+      case ANContentModeOriginalSize:
+            self.imageScale = 1.0f;
+            break;
+        case ANContentModeScaled:
+            self.imageScale = _imageScale;
+            break;
+        default:
+            break;
+    }
+    [CATransaction commit];
 }
 
 - (void)setImageScale:(float)scale {
-    if (scale != 1.0){
-        _contentMode = ANContentModeScaled;
+    if (self.image == nil){
+        return;
     }
     _imageScale = scale;
     CGSize newSize;
@@ -135,13 +126,15 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
     
     switch (self.contentMode) {
         case ANContentModeFit:
-            self.imageScale = ANCalculateScaleToFit(self.bounds.size, self.image.size);
+            self.contentMode = ANContentModeFit;
             break;
             
         case ANContentModeOriginalSize:
-            self.imageScale = 1.0;
+            self.contentMode = ANContentModeOriginalSize;
             break;
-            
+        case ANContentModeScaled:
+            self.contentMode = ANContentModeScaled;
+            break;
         default:
             break;
     }
@@ -162,8 +155,6 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
         self.mouseDownLocation = [theEvent locationInWindow];
         self.layerPosition = self.contentLayer.position;
     }
-//    self.mouseDownLocation = [self.layer convertPoint:self.mouseDownLocation toLayer:self.contentLayer];
-    NSLog(@"Mouse Down");
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent {
@@ -242,13 +233,16 @@ float ANCalculateScaleToFit(CGSize viewSize, CGSize imageSize){
     } else {
         self.imageScale = _imageScale * 2.0f;
     }
+    self.contentMode =  (self.imageScale == 1.0f) ? ANContentModeOriginalSize : ANContentModeScaled;
 }
 
 - (void)zoomOut {
+    self.contentMode =  ANContentModeScaled;
     if (_imageScale <= 0.125f){
         return;
     }
     self.imageScale = _imageScale / 2.0;
+    self.contentMode =  (self.imageScale == 1.0f) ? ANContentModeOriginalSize : ANContentModeScaled;
 }
 
 @end

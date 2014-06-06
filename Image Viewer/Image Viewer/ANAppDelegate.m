@@ -9,10 +9,15 @@
 #import "ANAppDelegate.h"
 
 #import "ANImageViewerWindowController.h"
+#import "ANFileViewerViewController.h"
+
+
 @interface ANAppDelegate()
 @property (nonatomic, strong) NSImage *theImage;
 @property (nonatomic, strong) ANImageViewerWindowController *imageViewerWindowController;
+@property (nonatomic, strong) ANFileViewerViewController* fileViewerViewController;
 @end
+
 @implementation ANAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -21,9 +26,10 @@
     self.theImage = [NSImage imageNamed:@"Dog.jpg"];
     self.imageViewerWindowController = [[ANImageViewerWindowController alloc] initWithWindowNibName:@"ImageViewerWindow"];
     [self.imageViewerWindowController showWindow:self];
-//    [self addImageViewToScrollView];
-//    [self createScrollView];
-
+    
+    ANFileViewerViewController *vc = [[ANFileViewerViewController alloc] initWithNibName:@"FileViewerView" bundle:[NSBundle mainBundle]];
+    
+    [self.window setContentView:vc.view];
 }
 
 @end

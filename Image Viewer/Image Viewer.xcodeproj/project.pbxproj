@@ -27,6 +27,8 @@
 		5C85D437190E991700C25B36 /* Parrot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C85D433190E991700C25B36 /* Parrot.jpg */; };
 		5C85D438190E991700C25B36 /* SmilingDog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C85D434190E991700C25B36 /* SmilingDog.jpg */; };
 		5C85D43A190FB11B00C25B36 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C85D439190FB11B00C25B36 /* QuartzCore.framework */; };
+		5CFF219C19310BED00FF043C /* FileViewerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CFF219B19310BED00FF043C /* FileViewerView.xib */; };
+		5CFF21A51931147B00FF043C /* ANFileViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF21A41931147B00FF043C /* ANFileViewerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,9 @@
 		5C85D433190E991700C25B36 /* Parrot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Parrot.jpg; sourceTree = "<group>"; };
 		5C85D434190E991700C25B36 /* SmilingDog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SmilingDog.jpg; sourceTree = "<group>"; };
 		5C85D439190FB11B00C25B36 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5CFF219B19310BED00FF043C /* FileViewerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileViewerView.xib; sourceTree = "<group>"; };
+		5CFF21A31931147B00FF043C /* ANFileViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANFileViewerViewController.h; sourceTree = "<group>"; };
+		5CFF21A41931147B00FF043C /* ANFileViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANFileViewerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +192,7 @@
 			children = (
 				5C7DE6061902D128006E8EB7 /* MainMenu.xib */,
 				5C7E7631190561AE0015B57F /* ImageViewerWindow.xib */,
+				5CFF219B19310BED00FF043C /* FileViewerView.xib */,
 			);
 			name = "Interface Builder";
 			sourceTree = "<group>";
@@ -194,9 +200,8 @@
 		5C7E7637190578CA0015B57F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5C7E7633190561D10015B57F /* ANImageViewerWindowController.h */,
-				5C7E7634190561D10015B57F /* ANImageViewerWindowController.m */,
-				5C85D430190E8F5100C25B36 /* Image View */,
+				5CFF21961931019C00FF043C /* Image View WindwoController */,
+				5CFF219A193101CB00FF043C /* File View WindwoController */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -208,6 +213,25 @@
 				5C5DE303190D72480007527C /* ANImageView.m */,
 			);
 			name = "Image View";
+			sourceTree = "<group>";
+		};
+		5CFF21961931019C00FF043C /* Image View WindwoController */ = {
+			isa = PBXGroup;
+			children = (
+				5C7E7633190561D10015B57F /* ANImageViewerWindowController.h */,
+				5C7E7634190561D10015B57F /* ANImageViewerWindowController.m */,
+				5C85D430190E8F5100C25B36 /* Image View */,
+			);
+			name = "Image View WindwoController";
+			sourceTree = "<group>";
+		};
+		5CFF219A193101CB00FF043C /* File View WindwoController */ = {
+			isa = PBXGroup;
+			children = (
+				5CFF21A31931147B00FF043C /* ANFileViewerViewController.h */,
+				5CFF21A41931147B00FF043C /* ANFileViewerViewController.m */,
+			);
+			name = "File View WindwoController";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +313,7 @@
 			files = (
 				5C7DE5FC1902D128006E8EB7 /* InfoPlist.strings in Resources */,
 				5C85D436190E991700C25B36 /* Lion.jpg in Resources */,
+				5CFF219C19310BED00FF043C /* FileViewerView.xib in Resources */,
 				5C7E7632190561AE0015B57F /* ImageViewerWindow.xib in Resources */,
 				5C7DE60A1902D128006E8EB7 /* Images.xcassets in Resources */,
 				5C7DE62619044DB5006E8EB7 /* Dog.jpg in Resources */,
@@ -318,6 +343,7 @@
 				5C7DE5FE1902D128006E8EB7 /* main.m in Sources */,
 				5C5DE304190D72480007527C /* ANImageView.m in Sources */,
 				5C7E7635190561D10015B57F /* ANImageViewerWindowController.m in Sources */,
+				5CFF21A51931147B00FF043C /* ANFileViewerViewController.m in Sources */,
 				5C7DE6051902D128006E8EB7 /* ANAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

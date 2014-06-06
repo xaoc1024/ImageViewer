@@ -24,7 +24,6 @@
     [super windowDidLoad];
     
     self.imagePathsArray = [NSArray arrayWithObjects:
-                            @"/Users/xaoc1024/Desktop/testImage.png",
                             @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/leopard.jpg",
                             @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/Lion.jpg",
                             @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/Parrot.jpg",
@@ -35,7 +34,7 @@
     
 //    [self setCurrentlyViewedImage:image];
 //    self.imageCounter = 0;
-    [self.window acceptsFirstResponder];
+//    [self.window acceptsFirstResponder];
 //    [self.window acceptsMouseMovedEvents];
     
 }

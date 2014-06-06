@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
@@ -674,7 +674,41 @@
             <view key="contentView" id="him-XP-Sez">
                 <rect key="frame" x="0.0" y="0.0" width="633" height="483"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView ambiguous="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH2-mI-ZQN">
+                        <rect key="frame" x="241" y="0.0" width="392" height="483"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="5f4-XJ-bjz">
+                            <rect key="frame" x="1" y="1" width="390" height="481"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <collectionView ambiguous="YES" id="dWE-xp-AKC">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="481"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <connections>
+                                        <outlet property="itemPrototype" destination="sV4-O2-ANM" id="wd8-Fd-big"/>
+                                    </connections>
+                                </collectionView>
+                            </subviews>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="gvg-X0-opZ">
+                            <rect key="frame" x="1" y="144" width="233" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="ebL-wE-D3T">
+                            <rect key="frame" x="234" y="1" width="15" height="143"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="dH2-mI-ZQN" secondAttribute="bottom" id="0jO-I9-Qiz"/>
+                    <constraint firstAttribute="trailing" secondItem="dH2-mI-ZQN" secondAttribute="trailing" id="eE4-uw-4hg"/>
+                    <constraint firstItem="dH2-mI-ZQN" firstAttribute="top" secondItem="him-XP-Sez" secondAttribute="top" id="opb-BX-Sr6"/>
+                </constraints>
             </view>
         </window>
+        <collectionViewItem id="sV4-O2-ANM"/>
     </objects>
 </document>
