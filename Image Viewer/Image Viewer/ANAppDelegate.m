@@ -9,13 +9,26 @@
 #import "ANAppDelegate.h"
 
 #import "ANImageViewerWindowController.h"
-#import "ANFileViewerViewController.h"
 
+#import "ANTreeViewItem.h"
+#import "ANOutlineViewController.h"
+#import "ANCommonViewManager.h"
 
-@interface ANAppDelegate()
+@interface ANAppDelegate()<NSOutlineViewDataSource>
+
 @property (nonatomic, strong) NSImage *theImage;
 @property (nonatomic, strong) ANImageViewerWindowController *imageViewerWindowController;
-@property (nonatomic, strong) ANFileViewerViewController* fileViewerViewController;
+
+@property (nonatomic, strong) NSString *basePath;
+@property (nonatomic, strong) NSFileManager *fileManager;
+@property (nonatomic, strong) ANTreeViewItem *baseItem;
+
+@property (nonatomic, strong) IBOutlet ANOutlineViewController *outlineViewController;
+@property (nonatomic, strong) ANCommonViewManager *commonViewManager;
+
+@property (weak) IBOutlet ANCollectionViewController *collectionViewController;
+
+//@property (nonatomic, strong)
 @end
 
 @implementation ANAppDelegate
@@ -23,13 +36,14 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    self.commonViewManager = [[ANCommonViewManager alloc] init];
+    self.commonViewManager.outlineViewController = self.outlineViewController;
+    self.commonViewManager.collectionViewController = self.collectionViewController;
+    
+    
     self.theImage = [NSImage imageNamed:@"Dog.jpg"];
     self.imageViewerWindowController = [[ANImageViewerWindowController alloc] initWithWindowNibName:@"ImageViewerWindow"];
     [self.imageViewerWindowController showWindow:self];
-    
-    ANFileViewerViewController *vc = [[ANFileViewerViewController alloc] initWithNibName:@"FileViewerView" bundle:[NSBundle mainBundle]];
-    
-    [self.window setContentView:vc.view];
 }
 
 @end

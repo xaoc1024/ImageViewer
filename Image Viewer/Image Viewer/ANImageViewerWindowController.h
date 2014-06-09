@@ -10,5 +10,5 @@
 
 @interface ANImageViewerWindowController : NSWindowController
 @property (nonatomic, strong) NSArray *imagePathsArray;
-@property (nonatomic, assign) NSInteger imageCounter;
+@property (nonatomic, assign) NSInteger shownImageNumber;
 @end

@@ -24,13 +24,18 @@
     [super windowDidLoad];
     
     self.imagePathsArray = [NSArray arrayWithObjects:
-                            @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/leopard.jpg",
-                            @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/Lion.jpg",
-                            @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/Parrot.jpg",
-                            @"/Users/xaoc1024/Desktop/AppInstaller/Imaged DES/SmilingDog.jpg",
-                            @"/Users/xaoc1024/Downloads/IMG_28042014_212412.png",
-                            @"/Users/xaoc1024/Downloads/001.JPG",
-                             nil];
+                            @"/Users/xaoc1024/Desktop/images/DSC_3045.JPG",
+                            @"/Users/xaoc1024/Desktop/images/DSC_3121.JPG",
+                            @"/Users/xaoc1024/Desktop/images/DSC_3203.JPG",
+                            @"/Users/xaoc1024/Desktop/images/DSC_3204.JPG",
+                            @"/Users/xaoc1024/Desktop/images/DSC_3243.JPG",
+                            @"/Users/xaoc1024/Desktop/images/DSC_3249.JPG",
+                            @"/Users/xaoc1024/Desktop/images/DSC_3282.JPG",
+                            @"/Users/xaoc1024/Desktop/images/DSC_3284.JPG",
+                            @"/Users/xaoc1024/Desktop/images/DSC_3303.JPG",
+                            @"/Users/xaoc1024/Desktop/images/DSC_3315.JPG",
+                            @"/Users/xaoc1024/Desktop/images/DSC_3319.JPG",
+                            nil];
     
 //    [self setCurrentlyViewedImage:image];
 //    self.imageCounter = 0;
@@ -40,29 +45,30 @@
 }
 
 #pragma mark - setters
-- (void)setImageCounter:(NSInteger)imageCounter {
-    if (imageCounter == -1){
+- (void)setShownImageNumber:(NSInteger)shownImageNumber {
+    if (shownImageNumber == -1){
         [self setCurrentlyViewedImage:[NSImage imageNamed:@"NoImages"]];
         self.window.title = @"No Images";
         return;
     }
     
-    NSString *path = self.imagePathsArray[imageCounter];
+    NSString *path = self.imagePathsArray[shownImageNumber];
     if ([path length]){
-        NSImage *image = [[NSImage alloc] initByReferencingFile:path];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        NSImage *image = [[NSImage alloc] initWithData:data];
         [self setCurrentlyViewedImage:image];
         self.window.title = [path lastPathComponent];
     }
-    _imageCounter = imageCounter;
+    _shownImageNumber = shownImageNumber;
 }
 
 - (void)setImagePathsArray:(NSArray *)imagePathsArray {
     _imagePathsArray = imagePathsArray;
     
     if ([imagePathsArray count]){
-        self.imageCounter = 0;
+        self.shownImageNumber = 0;
     } else {
-        self.imageCounter = -1;
+        self.shownImageNumber = -1;
     }
 }
 
@@ -72,21 +78,21 @@
 
 #pragma mark - image navigation
 - (void)showNextImage {
-    if (self.imageCounter == -1){
+    if (self.shownImageNumber == -1){
         return;
     }
-    if (self.imageCounter < [self.imagePathsArray count] - 1){
-        self.imageCounter = _imageCounter + 1;
+    if (self.shownImageNumber < [self.imagePathsArray count] - 1){
+        self.shownImageNumber = _shownImageNumber + 1;
     }
     
 }
 
 - (void)showPrevImage {
-    if (self.imageCounter == -1){
+    if (self.shownImageNumber == -1){
         return;
     }
-    if (self.imageCounter != 0){
-        self.imageCounter = _imageCounter - 1;
+    if (self.shownImageNumber != 0){
+        self.shownImageNumber = _shownImageNumber - 1;
     }
 }
 

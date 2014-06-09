@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5C5DE304190D72480007527C /* ANImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5DE303190D72480007527C /* ANImageView.m */; };
+		5C6A3B95194510BF00C85ACA /* ANCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A3B94194510BF00C85ACA /* ANCollectionViewController.m */; };
+		5C6A3B981945170400C85ACA /* ANImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A3B971945170400C85ACA /* ANImageItem.m */; };
+		5C6A3B9B19451D1400C85ACA /* ANCommonViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A3B9A19451D1400C85ACA /* ANCommonViewManager.m */; };
 		5C7DE5F21902D128006E8EB7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C7DE5F11902D128006E8EB7 /* Cocoa.framework */; };
 		5C7DE5FC1902D128006E8EB7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5C7DE5FA1902D128006E8EB7 /* InfoPlist.strings */; };
 		5C7DE5FE1902D128006E8EB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7DE5FD1902D128006E8EB7 /* main.m */; };
@@ -27,8 +30,8 @@
 		5C85D437190E991700C25B36 /* Parrot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C85D433190E991700C25B36 /* Parrot.jpg */; };
 		5C85D438190E991700C25B36 /* SmilingDog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C85D434190E991700C25B36 /* SmilingDog.jpg */; };
 		5C85D43A190FB11B00C25B36 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C85D439190FB11B00C25B36 /* QuartzCore.framework */; };
-		5CFF219C19310BED00FF043C /* FileViewerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CFF219B19310BED00FF043C /* FileViewerView.xib */; };
-		5CFF21A51931147B00FF043C /* ANFileViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF21A41931147B00FF043C /* ANFileViewerViewController.m */; };
+		5CEF448419427AD1005EAE02 /* ANOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEF448319427AD1005EAE02 /* ANOutlineViewController.m */; };
+		5CF5327719426B6C009914C4 /* ANTreeViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF5327619426B6C009914C4 /* ANTreeViewItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,12 @@
 /* Begin PBXFileReference section */
 		5C5DE302190D72480007527C /* ANImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANImageView.h; sourceTree = "<group>"; };
 		5C5DE303190D72480007527C /* ANImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANImageView.m; sourceTree = "<group>"; };
+		5C6A3B93194510BF00C85ACA /* ANCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANCollectionViewController.h; sourceTree = "<group>"; };
+		5C6A3B94194510BF00C85ACA /* ANCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANCollectionViewController.m; sourceTree = "<group>"; };
+		5C6A3B961945170400C85ACA /* ANImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANImageItem.h; sourceTree = "<group>"; };
+		5C6A3B971945170400C85ACA /* ANImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANImageItem.m; sourceTree = "<group>"; };
+		5C6A3B9919451D1400C85ACA /* ANCommonViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANCommonViewManager.h; sourceTree = "<group>"; };
+		5C6A3B9A19451D1400C85ACA /* ANCommonViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANCommonViewManager.m; sourceTree = "<group>"; };
 		5C7DE5EE1902D128006E8EB7 /* Image Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Image Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C7DE5F11902D128006E8EB7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5C7DE5F41902D128006E8EB7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -72,9 +81,10 @@
 		5C85D433190E991700C25B36 /* Parrot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Parrot.jpg; sourceTree = "<group>"; };
 		5C85D434190E991700C25B36 /* SmilingDog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SmilingDog.jpg; sourceTree = "<group>"; };
 		5C85D439190FB11B00C25B36 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		5CFF219B19310BED00FF043C /* FileViewerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileViewerView.xib; sourceTree = "<group>"; };
-		5CFF21A31931147B00FF043C /* ANFileViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANFileViewerViewController.h; sourceTree = "<group>"; };
-		5CFF21A41931147B00FF043C /* ANFileViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANFileViewerViewController.m; sourceTree = "<group>"; };
+		5CEF448219427AD1005EAE02 /* ANOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANOutlineViewController.h; sourceTree = "<group>"; };
+		5CEF448319427AD1005EAE02 /* ANOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANOutlineViewController.m; sourceTree = "<group>"; };
+		5CF5327519426B6C009914C4 /* ANTreeViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTreeViewItem.h; sourceTree = "<group>"; };
+		5CF5327619426B6C009914C4 /* ANTreeViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANTreeViewItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +109,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C6A3B9C19451E6100C85ACA /* Collection View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5C6A3B93194510BF00C85ACA /* ANCollectionViewController.h */,
+				5C6A3B94194510BF00C85ACA /* ANCollectionViewController.m */,
+				5C6A3B961945170400C85ACA /* ANImageItem.h */,
+				5C6A3B971945170400C85ACA /* ANImageItem.m */,
+			);
+			name = "Collection View Controller";
+			sourceTree = "<group>";
+		};
+		5C6A3B9D19451E6900C85ACA /* Common View Manager */ = {
+			isa = PBXGroup;
+			children = (
+				5C6A3B9919451D1400C85ACA /* ANCommonViewManager.h */,
+				5C6A3B9A19451D1400C85ACA /* ANCommonViewManager.m */,
+			);
+			name = "Common View Manager";
+			sourceTree = "<group>";
+		};
 		5C7DE5E51902D128006E8EB7 = {
 			isa = PBXGroup;
 			children = (
@@ -192,7 +222,6 @@
 			children = (
 				5C7DE6061902D128006E8EB7 /* MainMenu.xib */,
 				5C7E7631190561AE0015B57F /* ImageViewerWindow.xib */,
-				5CFF219B19310BED00FF043C /* FileViewerView.xib */,
 			);
 			name = "Interface Builder";
 			sourceTree = "<group>";
@@ -202,6 +231,8 @@
 			children = (
 				5CFF21961931019C00FF043C /* Image View WindwoController */,
 				5CFF219A193101CB00FF043C /* File View WindwoController */,
+				5C6A3B9C19451E6100C85ACA /* Collection View Controller */,
+				5C6A3B9D19451E6900C85ACA /* Common View Manager */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -228,8 +259,10 @@
 		5CFF219A193101CB00FF043C /* File View WindwoController */ = {
 			isa = PBXGroup;
 			children = (
-				5CFF21A31931147B00FF043C /* ANFileViewerViewController.h */,
-				5CFF21A41931147B00FF043C /* ANFileViewerViewController.m */,
+				5CEF448219427AD1005EAE02 /* ANOutlineViewController.h */,
+				5CEF448319427AD1005EAE02 /* ANOutlineViewController.m */,
+				5CF5327519426B6C009914C4 /* ANTreeViewItem.h */,
+				5CF5327619426B6C009914C4 /* ANTreeViewItem.m */,
 			);
 			name = "File View WindwoController";
 			sourceTree = "<group>";
@@ -313,7 +346,6 @@
 			files = (
 				5C7DE5FC1902D128006E8EB7 /* InfoPlist.strings in Resources */,
 				5C85D436190E991700C25B36 /* Lion.jpg in Resources */,
-				5CFF219C19310BED00FF043C /* FileViewerView.xib in Resources */,
 				5C7E7632190561AE0015B57F /* ImageViewerWindow.xib in Resources */,
 				5C7DE60A1902D128006E8EB7 /* Images.xcassets in Resources */,
 				5C7DE62619044DB5006E8EB7 /* Dog.jpg in Resources */,
@@ -340,10 +372,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CF5327719426B6C009914C4 /* ANTreeViewItem.m in Sources */,
+				5C6A3B981945170400C85ACA /* ANImageItem.m in Sources */,
+				5CEF448419427AD1005EAE02 /* ANOutlineViewController.m in Sources */,
 				5C7DE5FE1902D128006E8EB7 /* main.m in Sources */,
+				5C6A3B9B19451D1400C85ACA /* ANCommonViewManager.m in Sources */,
 				5C5DE304190D72480007527C /* ANImageView.m in Sources */,
 				5C7E7635190561D10015B57F /* ANImageViewerWindowController.m in Sources */,
-				5CFF21A51931147B00FF043C /* ANFileViewerViewController.m in Sources */,
+				5C6A3B95194510BF00C85ACA /* ANCollectionViewController.m in Sources */,
 				5C7DE6051902D128006E8EB7 /* ANAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
